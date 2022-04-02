@@ -1,0 +1,16 @@
+$color-40: rgb(40, 40, 40);
+$color-80: rgb(80, 80, 80);
+$color-120: rgb(120, 120, 120);
+$color-200: rgb(200, 200, 200);
+$color-220: rgb(220, 220, 220);
+
+$theme-bg-color: $color-40;
+$theme-font-color: $color-220;
+$theme-border-color: $color-80;
+
+$theme-gradient-bg-color: linear-gradient(transparent, rgba(255, 255, 255, 0.05));
+
+$border: 1px solid $theme-border-color;
+
+
+$terminal-border: 2px solid $theme-border-color;
