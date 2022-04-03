@@ -138,6 +138,13 @@ const ProfileData = {
             contact: "https://twitter.com/ankit_kumar26",
         },
     ],
+    routes: [
+        { path: "/", name: "about", menuText: "About" },
+        { path: "/#/skills", name: "skills", menuText: "Skills" },
+        { path: "/#/projects", name: "projects", menuText: "Projects" },
+        { path: "/#/contacts", name: "contacts", menuText: "Contacts" },
+        { path: "/#/resume.pdf", name: "resume.pdf", menuText: "CV/Resume" },
+    ],
 };
 
 export default ProfileData;

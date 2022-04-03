@@ -5,11 +5,13 @@ import { useLocation } from "react-router-dom";
 import TerminalHeader from "./TerminalHeader";
 import Command from "./Command";
 import Output from "./Output";
+import ProfileData from "../ProfileData";
 
 export default function Terminal() {
-    let page = useLocation().pathname.split("/")[1];
-    if (!page) page = "about";
-
+    let page = useLocation();
+    page = page.pathname + page.hash;
+    const route = ProfileData.routes.filter((route) => route.path === page)[0];
+    page = route.name;
     const command = "fetch";
     const subCommand = page;
 
@@ -48,20 +50,19 @@ export default function Terminal() {
         }, 100);
     };
 
-    const reloadComponents = () => {
+    const hideComponents = () => {
         showCursor(true);
         setOutputDisplay(false);
         setSecondCommandDisplay(false);
         setCommandContent("");
         setSubCommandContent("");
-        animateCommand();
     };
 
     if (page !== prevPage) {
         // This is required because animation don't fine without this
         // Without this reactjs shows glimpses of the new output container
         // that I'm showing with some animation (delay)
-        reloadComponents();
+        hideComponents();
         setPrevPage(page);
     }
 
@@ -70,7 +71,8 @@ export default function Terminal() {
             window.location.reload(true);
             return;
         }
-        reloadComponents();
+        hideComponents();
+        animateCommand();
     }, [subCommand]);
 
     const commandHTML = (
@@ -84,7 +86,7 @@ export default function Terminal() {
         <div className="terminal-container">
             <TerminalHeader></TerminalHeader>
             <Command command={commandHTML} showCursor={cursor}></Command>
-            {outputDisplay ? <Output></Output> : null}
+            {outputDisplay ? <Output page={page}></Output> : null}
             {secondCommandDisplay ? (
                 <Command showCursor={true}></Command>
             ) : null}

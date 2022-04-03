@@ -24,3 +24,13 @@ npx create-react-app <directory>
 npm run build
 ```
 **and then don't forget to copy `build/index.html` to `index.html`**
+
+## Learnings
+
+### React router works as only client side router
+
+React router urls won't directly means if your root url is `https://somedomain.com` then you can't access `https://somedomain.com/some-page` directly because React router works as client side router not as server side router.
+
+For this simple hack is add "#" before all urls like this `https://somedomain.com/#/some-page`
+
+> ref: https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writing-manually

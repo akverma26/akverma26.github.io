@@ -1,24 +1,19 @@
 import { Link, useLocation } from "react-router-dom";
+import ProfileData from "../ProfileData";
 
 export default function NavigationMenu() {
     let page = useLocation().pathname;
-    const menus = [
-        { to: "/", text: "About" },
-        { to: "/skills", text: "Skills" },
-        { to: "/projects", text: "Projects" },
-        { to: "/contacts", text: "Contacts" },
-        { to: "resume.pdf", text: "CV/Resume" },
-    ];
+    const menus = ProfileData.routes;
     return (
         <div className="navigation-menu-container">
             {menus.map((menu, index) => (
                 <Link
                     key={index}
-                    to={menu.to}
-                    className={"menu" + (menu.to === page ? " selected" : "")}
+                    to={menu.path}
+                    className={"menu" + (menu.path === page ? " selected" : "")}
                 >
                     <div className="gradient-overlay"></div>
-                    {menu.text}
+                    {menu.menuText}
                 </Link>
             ))}
         </div>
