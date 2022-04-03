@@ -2,7 +2,8 @@ import { Link, useLocation } from "react-router-dom";
 import ProfileData from "../ProfileData";
 
 export default function NavigationMenu() {
-    let page = useLocation().pathname;
+    let page = useLocation();
+    page = page.pathname + page.hash;
     const menus = ProfileData.routes;
     return (
         <div className="navigation-menu-container">
